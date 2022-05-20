@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha 'test/**/*.ts'",
-    "compile": "node src/compile.ts"
+    "compile": "node src/compile.ts",
+    "deploy": "node src/deploy.ts"
   },
   "keywords": [],
   "author": "",
