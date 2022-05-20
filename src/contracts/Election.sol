@@ -9,7 +9,8 @@ contract Election {
 
     address public manager;
     CandidateStructure[] public candidates;
-    mapping(address => bool) voters;
+    mapping(address => bool) public candidateArray;
+    mapping(address => bool) public voters;
 
     modifier _onlyManagerAcess(){
         require(manager == msg.sender);
@@ -21,12 +22,13 @@ contract Election {
     }
 
     function participate(string memory name) public payable {
+        require(!candidateArray[msg.sender], "Only one participation at a time");
         CandidateStructure memory newCandidate = CandidateStructure({
             name: name,
             voteCount: 0,
             CandidateAddress: msg.sender
         });
-
+        candidateArray[msg.sender] = true;
         candidates.push(newCandidate);
     }
 
